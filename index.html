@@ -192,7 +192,7 @@
                             <h4>CV</h4>
                             <p style="text-indent:2em;">{{ member[roselia.lang+"CVName"] }}</p>
                             <h4>{{({cn: "生日", jp:"誕生日", en: "Birthday"})[roselia.lang]}}</h4>
-                            <p style="text-indent:2em;">{{ roselia.utils.render("{getMonth() + 1}月{getDate()}日", new Date(member.birthday), ["{", "}"]) }}</p>
+                            <p style="text-indent:2em;" v-text='(d => `${d[0]}月${d[1]}日`)(member.birthday.split("-"))'></p>
                             <h4>{{({cn: "血型", jp:"血液型", en: "Blood Type"})[roselia.lang]}}</h4>
                             <p style="text-indent:2em;">{{ member.bloodType }}</p>
                             <h4>{{({cn: "链接", jp:"リンク", en: "Links"})[roselia.lang]}}</h4>
@@ -232,7 +232,7 @@
             </div>
         </div>
         <div class="row">
-            <h2>相关<span class="heimu">或不相关</span>链接</h2>
+            <h2>相关链接</h2>
             <br/>
             <div class="col-xs-6 col-md-3 col-lg-2" v-for="link in roselia.moreLinks">
                 <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" :href="link.target" target="_blank">
@@ -241,7 +241,7 @@
             </div>
         </div>
         <div class="row">
-            <h2>评论</h2><span class="heimu">.moe 没办法备案hhh</span>
+            <h2>评论</h2>
             <div id="disqus_thread"></div> 
         </div>
     </div>
