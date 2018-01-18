@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Roselia Encore 是Roselia的（非官方）应援站">
+    <meta name="keywords" content="Roselia, roselia">
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="static/css/encore.css" rel="stylesheet">
+    <title>Roselia Encore</title>
+</head>
+<body>
+<div id="main">
+    <nav class="navbar navbar-default navbar-aq hidden-xs">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="./"><img class="img-responsive" src="static/img/logo.png"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://tieba.baidu.com/f?kw=bangdream" target="_blank">BangDream吧</a></li>
+            <li><a href="https://tieba.baidu.com/f?kw=roselia" target="_blank">Roselia吧</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{ roselia.langOf("语言", "言語", "Language")}}<span
+                        class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a :onclick="`roselia.lang = '${lang}'`" v-for="(lang, idx) in roselia.languages">{{ roselia.displayLanguages[idx] }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">角色贴吧（如果存在的话） <span
+                        class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li v-for="member in roselia.memberList">
+                        <a target="_blank"
+                           v-bind:href="`https://tieba.baidu.com/f?kw=${member.cnName}`">{{ member[roselia.lang+"Name"] }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a data-toggle="modal" data-target="#modal-player">播放器</a></li>
+        </ul>
+    </div>
+    
+</nav>
+<div class="banner hidden-xs">
+</div>
+<div class="mobile-header visible-xs">
+    <div class="m-logo"><img src="static/img/logo.png"></div>
+</div>
+<div class="main container">
+    <div class="member part">
+        <div class="row">
+            <div v-for="member in roselia.birthdayMember" class="col-md-6 col-md-offset-3 thumbnail" v-bind:style="`background: ${member.encoreColor};`">
+                <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.png`">
+                    <h3 class="text-center">{{ roselia.langOf("生日快乐", "お誕生日おめでとう", "Happy birthday") }}, {{ roselia.langOf(member, "Name") }}!</h3>
+            </div>
+                    
+        </div>
+        <h2>{{ roselia.langOf("成员", "メンバー", "Members")}}</h2>
+        <div class="row">
+            <div class="col-xs-6 col-md-4" v-for="(member, idx) in roselia.memberList">
+                <a data-toggle="modal" v-bind:data-target="`#modal-member-${idx}`" class="thumbnail"
+                    v-bind:style="`background: ${member.encoreColor}`">
+                    <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.png`">
+                    <div class="caption">
+                        {{ member.role }}.{{ member[roselia.lang+"Name"] }} - CV:{{ roselia.langOf(member, "CVName") }}
+                    </div>
+                    
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="video">
+        <div class="single part">
+            <h2>CD</h2>
+            <div class="row">
+                <div class="col-xs-6 col-md-3" v-for="album in roselia.single">
+                    <a class="thumbnail" data-toggle="modal" v-bind:data-target="`#modal-single-${album.id}`">
+                        <img v-bind:src="`static/img/Single_${album.id}.jpg`">
+                        <div class="caption">
+                            {{ album.title }}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="animate part">
+            <h2>BanG Dream {{ roselia.langOf("番剧", "アニメ", "Anime") }}</h2>
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <a href="https://bangumi.bilibili.com/anime/5807" class="thumbnail" target="_blank">
+                        <div class="caption">
+                            <p>BanG Dream TV </p>
+                            <del>话说每集的题目真是不得了啊</del>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <a href="https://bangumi.bilibili.com/anime/6398" class="thumbnail" target="_blank">
+                        <div class="caption">
+                            BanG Dream OVA
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="more part">
+            <h2>更多资源……</h2>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="caption">
+                        <p>有待补充……</p>
+                        <del>其实我自己也不是很确定啦……</del>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <a href="https://search.bilibili.com/all?keyword=roselia" class="thumbnail" target="_blank">
+                        <div class="caption">
+                            但是我至少可以帮你搜索B站
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" data-toggle="modal" data-target="#modal-player">
+                        展开播放器
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    <div class="modal fade" v-bind:id="`modal-single-${album.id}`" tabindex="-1" role="dialog" v-for="album in roselia.single">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ album.title }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-responsive" v-bind:src="`static/img/Single_${album.id}.jpg`">
+                        </div>
+                        <div class="col-md-6">
+                                <div class="page-header">
+                                    <h2>{{ album.title }} <small>Roselia - {{album.id}}{{["st", "nd", "rd"][album.id-1] || "th"}}</small></h2>
+                                </div>
+                                <h4>{{({cn: "音轨", jp:"収録内容", en:"Track"})[roselia.lang]}}</h4>
+                                <ol>
+                                    <li v-for="track in album.track">{{ track }}</li>
+                                </ol>
+                                <h4>{{({cn: "发售日期", jp:"発売日", en: "Release Date"})[roselia.lang]}}</h4>
+                                <p style="text-indent:2em;">{{ (new Date(album.releaseDate)).toLocaleDateString() }}</p>
+                                <h4>{{({cn: "链接", jp:"リンク", en: "Links"})[roselia.lang]}}</h4>
+                                <ul>
+                                    <li v-for="link in album.links"><a v-bind:href="link.link" target="_blank">{{ link.origin }}</a></li>
+                                </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" v-bind:id="`modal-member-${idx}`" tabindex="-1" role="dialog" v-for="(member, idx) in roselia.memberList">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ member[roselia.lang+"Name"] }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img class="img-responsive" v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.png`">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="page-header">
+                                <h2>{{ member[roselia.lang+"Name"] }} <small>Roselia - {{member.role}}</small></h2>
+                            </div>
+                            <h4>CV</h4>
+                            <p style="text-indent:2em;">{{ member[roselia.lang+"CVName"] }}</p>
+                            <h4>{{({cn: "生日", jp:"誕生日", en: "Birthday"})[roselia.lang]}}</h4>
+                            <p style="text-indent:2em;">{{ roselia.utils.render("{getMonth() + 1}月{getDate()}日", new Date(member.birthday), ["{", "}"]) }}</p>
+                            <h4>{{({cn: "血型", jp:"血液型", en: "Blood Type"})[roselia.lang]}}</h4>
+                            <p style="text-indent:2em;">{{ member.bloodType }}</p>
+                            <h4>{{({cn: "链接", jp:"リンク", en: "Links"})[roselia.lang]}}</h4>
+                            <ul>
+                                <li><a :href="`https://zh.moegirl.org/${member.cnName}`" target="_blank">萌娘百科<span class="heimu">（页面补充中）</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-player" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Roselia</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="center-block"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="https://music.163.com/outchain/player?type=0&id=1999324469&auto=0&height=430"></iframe></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="more part">
+        <div class="row">
+            <h2>更多……</h2>
+            <p>各位若有什么想法，欢迎来批判一番。</p>
+            <div class="col-xs-6 col-md-3 col-lg-2">
+                <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" href="mailto:me@roselia.moe">现在就批判一番</a>
+            </div>
+            <div class="col-xs-6 col-md-3 col-lg-2">
+                <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" target="_blank" href="https://github.com/roselia-cdn/roselia-encore">View on GitHub</a>
+            </div>
+        </div>
+        <div class="row">
+            <h2>相关<span class="heimu">或不相关</span>链接</h2>
+            <br/>
+            <div class="col-xs-6 col-md-3 col-lg-2" v-for="link in roselia.moreLinks">
+                <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" :href="link.target" target="_blank">
+                    {{ link.description }}
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <h2>评论</h2><span class="heimu">.moe 没办法备案hhh</span>
+            <div id="disqus_thread"></div> 
+        </div>
+    </div>
+</div>
+<div class="foot-wrapper">
+    <div class="footer container">
+        <p>&copy;{{(new Date).getFullYear()}} Designed by <a href="https://mohuety.com" target="_blank">Somainer</a>.</p>
+        <a href="https://github.com/roselia-cdn/roselia-encore">GitHub</a>
+    </div>
+</div>
+</div>
+<script async src="static/js/boring.js"></script>
+<script defer src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script defer src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+<script defer src="static/js/roselia-e.js"></script><script>
+(function() {
+var d = document, s = d.createElement('script');
+s.src = 'https://roselia-encore.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+</body>
+</html>

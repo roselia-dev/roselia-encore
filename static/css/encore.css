@@ -1,0 +1,570 @@
+body {
+    font-family: "Microsoft YaHei", "SimHei";
+}
+
+a, a:hover, a:focus, a:visited, a:checked {
+    text-decoration: none !important;
+}
+
+.roselia-theme {
+    background-color: #5869b1;
+}
+.navbar-aq {
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    background-color: #fff;
+    height: 100px;
+}
+
+.navbar-aq .navbar-nav > li > a {
+    line-height: 60px;
+    font-size: 1.2em;
+    padding: 20px 15px;
+    transition: .2s;
+}
+
+.navbar-aq .navbar-nav > li > a:focus, .navbar-aq .navbar-nav > li > a:hover {
+    background-color: #5869b1;
+    color: #fff;
+}
+.navbar-aq .dropdown-menu {
+    border: none;
+}
+
+.navbar-aq .dropdown-menu > li > a:hover {
+    background-color:  #5869b1;
+    color: #fff
+}
+
+.navbar-header {
+
+    width: 320px;
+}
+
+.navbar-header img {
+    width: 100%;
+}
+.banner {
+    background: url("/static/img/banner.jpg") no-repeat;
+    background-size: 100% auto;
+    padding-bottom: 33%;
+}
+.haishoku{
+    background: rgb(29, 57, 94);
+    color: #eee;
+}
+
+.part {
+    border-radius: 15px 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 11px 7px 15px rgba(0, 0, 0, .2);
+    padding: 25px 20px 5px 20px;
+    margin-bottom: 25px;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+}
+.part:hover {
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: padding .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 15px 15px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 20px 20px 17px 0px rgba(0, 0, 0, .2);
+    margin-bottom: 25px;
+}
+
+.member {
+    margin-top: -30px;
+}
+
+.m-s {
+    padding-bottom: 33.333%;
+    background-position: center;
+    background-size: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.more .row {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.f-s {
+    font-size: 1.3em;
+    text-align: center;
+    font-weight: 300;
+    color: #fff !important;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 200px;
+    margin-bottom: 10px;
+    display: block;
+    -webkit-transition: .1s ease-in-out;
+    transition: .1s ease-in-out;
+}
+
+.l-s {
+    font-size: 1em;
+    text-align: center;
+    font-weight: 300;
+    background-color: #fff;
+    color: #00A0E9 !important;
+    border: 1px solid #00A0E9;
+    padding: 6px 0;
+    width: 100%;
+    border-radius: 200px;
+    margin-bottom: 10px;
+    display: block;
+    -webkit-transition: .1s ease-in-out;
+    transition: .1s ease-in-out;
+}
+
+.l-s:hover {
+    background-color: #00A0E9;
+    color: #fff !important;
+}
+
+.l-add {
+    font-size: 1em;
+    text-align: center;
+    font-weight: 300;
+    background-color: #00A0E9;
+    color: #fff !important;
+    padding: 6px 0;
+    width: 100%;
+    border-radius: 200px;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #00A0E9;
+}
+
+.foot-wrapper {
+    background: linear-gradient(45deg, rgb(114, 82, 201) 15%, #9CD4EA 85%);
+}
+
+.footer {
+    text-align: center;
+    font-size: 1.2em;
+    color: #fff;
+    padding: 20px 0;
+    font-weight: 300;
+}
+
+.footer a {
+    color: #fff;
+}
+.m-logo {
+    padding-top: 10%;
+    margin: auto;
+    width: 80%;
+}
+
+.m-logo img {
+    width: 100%;
+}
+
+.tip {
+    padding-bottom: 20px;
+    font-size: 1.1em;
+    color: #888;
+    letter-spacing: 0.05em;
+}
+
+.choose-p {
+    margin-top: 15px;
+}
+
+.choose-p h3 {
+    padding-left: 15px;
+    margin: 0;
+    margin-bottom: 3px;
+    padding-bottom: 5px;
+    font-weight: 300;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.choose-p a {
+    margin: 5px 0;
+}
+
+.line {
+    clear: both;
+    margin-bottom: 15px;
+}
+
+span.heimu {background:black;color:black;}
+span.heimu a:link{background:black;color:black !important;}
+span.heimu a:visited{background:black;color:black !important;}
+span.heimu a:hover {background:black;color:black !important;}
+span.heimu a:active {background:black;color:black !important;}
+.EdgeButton,.EdgeButton:visited {
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap
+}
+
+.EdgeButton:active,.EdgeButton:focus,.EdgeButton:hover {
+    text-decoration: none
+}
+
+.EdgeButton--xsmall {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 2px 8px
+}
+
+.EdgeButton--small {
+    font-size: 12px;
+    line-height: 16px;
+    padding: 4px 12px
+}
+
+.EdgeButton--medium {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 16px
+}
+
+.EdgeButton--large {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 12px 20px
+}
+
+.EdgeButton--xlarge {
+    font-size: 18px;
+    line-height: 32px;
+    padding: 16px 32px
+}
+
+.EdgeButton--primary {
+    background-color: #1da1f2;
+    border: 1px solid #1da1f2;
+    color: #fff
+}
+
+.EdgeButton--primary:hover {
+    background-color: #006dbf;
+    border-color: #006dbf;
+    color: #fff
+}
+
+.EdgeButton--primary:focus {
+    border-color: #1da1f2;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #71c9f8;
+    color: #fff
+}
+
+.EdgeButton--primary:active {
+    background-color: #006dbf;
+    border-color: #006dbf;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #1da1f2;
+    color: #fff
+}
+
+.EdgeButton--roselia {
+    transition: background-color .25s;
+    background-color: #5869b1;
+    border: 1px solid #1da1f2;
+    color: #fff
+}
+
+.EdgeButton--roselia:hover {
+    background-color: #610cd1;
+    border-color: #4300bf;
+    color: #fff
+}
+
+.EdgeButton--roselia:focus {
+    border-color: #5100d4;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #71c9f8;
+    color: #fff
+}
+
+.EdgeButton--roselia:active {
+    background-color: #4500a0;
+    border-color: #4300bf;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #1da1f2;
+    color: #fff
+}
+
+
+.EdgeButton--primary.disabled,.EdgeButton--primary[disabled],.EdgeButton--primary[disabled]:hover,.EdgeButton--primary[aria-disabled=true] {
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--secondary {
+    background-color: #fff;
+    border: 1px solid #1da1f2;
+    color: #1da1f2
+}
+
+.EdgeButton--secondary:hover {
+    background-color: #eaf5fd;
+    color: #1da1f2
+}
+
+.EdgeButton--secondary:focus {
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #71c9f8;
+    color: #1da1f2;
+    outline: 0
+}
+
+.EdgeButton--secondary:active {
+    background-color: #006dbf;
+    border-color: #006dbf;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #1da1f2;
+    color: #fff
+}
+
+.EdgeButton--secondary.disabled,.EdgeButton--secondary[disabled],.EdgeButton--secondary[disabled]:hover,.EdgeButton--secondary[aria-disabled=true] {
+    background-color: #fff;
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--tertiary {
+    background-color: #fff;
+    border: 1px solid #66757f;
+    color: #66757f
+}
+
+.EdgeButton--tertiary:hover {
+    background-color: #f5f8fa;
+    color: #66757f
+}
+
+.EdgeButton--tertiary:focus {
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #ccd6dd;
+    color: #66757f
+}
+
+.EdgeButton--tertiary:active {
+    background-color: #f5f8fa;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #66757f;
+    color: #66757f
+}
+
+.EdgeButton--tertiary.disabled,.EdgeButton--tertiary[disabled],.EdgeButton--tertiary[disabled]:hover,.EdgeButton--tertiary[aria-disabled=true] {
+    background-color: #f5f8fa;
+    border-color: #f5f8fa;
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--danger {
+    background-color: #e0245e;
+    border: 1px solid #e0245e;
+    color: #fff
+}
+
+.EdgeButton--danger:hover {
+    background-color: #ac002b;
+    border-color: #ac002b;
+    color: #fff
+}
+
+.EdgeButton--danger:focus {
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #f6809a;
+    color: #fff
+}
+
+.EdgeButton--danger:active {
+    background-color: #ac002b;
+    border-color: #ac002b;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #e0245e;
+    color: #fff
+}
+
+.EdgeButton--danger.disabled,.EdgeButton--danger[disabled],.EdgeButton--danger[disabled]:hover,.EdgeButton--danger[aria-disabled=true] {
+    background-color: #ffb8c2;
+    border-color: #ffb8c2;
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--transparent {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff
+}
+
+.EdgeButton--transparent:focus:before {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.5)
+}
+
+.EdgeButton--transparent:active:before {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8)
+}
+
+.EdgeButton--transparent.disabled,.EdgeButton--transparent[disabled],.EdgeButton--transparent[disabled]:hover,.EdgeButton--transparent[aria-disabled=true] {
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--transparent:focus:before,.EdgeButton--transparent:active:before,.EdgeButton--transparentDark:focus:before,.EdgeButton--transparentDark:active:before {
+    background-color: transparent;
+    border-radius: inherit;
+    bottom: -2px;
+    content: "";
+    left: -2px;
+    pointer-events: none;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    transition: .2s
+}
+
+.EdgeButton--transparentDark {
+    background-color: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.8);
+    color: #fff
+}
+
+.EdgeButton--transparentDark:hover {
+    background-color: rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.5);
+    color: #fff
+}
+
+.EdgeButton--transparentDark:focus {
+    box-shadow: none;
+    color: #fff
+}
+
+.EdgeButton--transparentDark:active {
+    background-color: rgba(0,0,0,0.5);
+    border-color: rgba(255,255,255,0.5);
+    box-shadow: none;
+    color: #fff
+}
+
+.EdgeButton--transparentDark:focus:before {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.5)
+}
+
+.EdgeButton--transparentDark:active:before {
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.8)
+}
+
+.EdgeButton--transparentDark.disabled,.EdgeButton--transparentDark[disabled],.EdgeButton--transparentDark[disabled]:hover,.EdgeButton--transparentDark[aria-disabled=true] {
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--invertedPrimary {
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #1da1f2!important
+}
+
+.EdgeButton--invertedPrimary:hover,.EdgeButton--invertedPrimary:active {
+    background-color: rgba(255,255,255,0.8);
+    border-color: transparent
+}
+
+.EdgeButton--invertedPrimary:focus {
+    box-shadow: 0 0 0 2px #1da1f2,0 0 0 4px #71c9f8
+}
+
+.EdgeButton--invertedPrimary:active {
+    box-shadow: 0 0 0 2px #1da1f2,0 0 0 4px #fff
+}
+
+.EdgeButton--invertedPrimary.disabled,.EdgeButton--invertedPrimary[disabled],.EdgeButton--invertedPrimary[disabled]:hover,.EdgeButton--invertedPrimary[aria-disabled=true] {
+    background-color: #eaf5fd;
+    border-color: #eaf5fd;
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--invertedSecondary {
+    background-color: #1da1f2;
+    border: 1px solid #fff;
+    color: #fff!important
+}
+
+.EdgeButton--invertedSecondary:hover {
+    background-color: #71c9f8
+}
+
+.EdgeButton--invertedSecondary:focus {
+    box-shadow: 0 0 0 2px #1da1f2,0 0 0 4px #71c9f8
+}
+
+.EdgeButton--invertedSecondary:active {
+    box-shadow: 0 0 0 2px #1da1f2,0 0 0 4px #fff
+}
+
+.EdgeButton--invertedSecondary.disabled,.EdgeButton--invertedSecondary[disabled],.EdgeButton--invertedSecondary[disabled]:hover,.EdgeButton--invertedSecondary[aria-disabled=true] {
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton--invertedDanger {
+    background-color: transparent;
+    border: 1px solid #e0245e;
+    color: #e0245e
+}
+
+.EdgeButton--invertedDanger:hover {
+    background-color: #ffb8c2;
+    color: #e0245e
+}
+
+.EdgeButton--invertedDanger:focus {
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #ffb8c2;
+    color: #e0245e;
+    outline: 0
+}
+
+.EdgeButton--invertedDanger:active {
+    background-color: #ffb8c2;
+    box-shadow: 0 0 0 2px #fff,0 0 0 4px #e0245e;
+    color: #e0245e
+}
+
+.EdgeButton--invertedDanger.disabled,.EdgeButton--invertedDanger[disabled],.EdgeButton--invertedDanger[disabled]:hover,.EdgeButton--invertedDanger[aria-disabled=true] {
+    opacity: .3;
+    -ms-filter: "alpha(opacity=30)"
+}
+
+.EdgeButton.EdgeButton--icon {
+    border-radius: 50%;
+    line-height: 1;
+    padding: 0
+}
+
+.EdgeButton--icon.EdgeButton--small {
+    font-size: 14px;
+    height: 26px;
+    width: 26px
+}
+
+.EdgeButton--icon,.EdgeButton--icon.EdgeButton--medium {
+    font-size: 18px;
+    height: 34px;
+    width: 34px
+}
+
+.EdgeButton--icon.EdgeButton--large {
+    font-size: 21px;
+    height: 50px;
+    width: 50px
+}
