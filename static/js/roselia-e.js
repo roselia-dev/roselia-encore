@@ -217,7 +217,7 @@
             cnName: "白金燐子",
             enName: "Shirokane Rinko",
             birthday: "10-17",
-            role: "Kb",
+            role: "Key",
             jpCVName: "明坂聡美",
             cnCVName:"明坂聪美",
             enCVName: "Akesaka Satomi",
