@@ -60,24 +60,34 @@
     <div class="member part">
         <div class="row">
             <div v-for="member in roselia.birthdayMember" class="col-md-6 col-md-offset-3 thumbnail" v-bind:style="`background: ${member.encoreColor};`">
-                <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.png`">
+                <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.${roselia.member.picSuffix}`">
                     <h3 class="text-center">{{ roselia.langOf("生日快乐", "お誕生日おめでとう", "Happy birthday") }}, {{ roselia.langOf(member, "Name") }}!</h3>
             </div>
                     
         </div>
-        <h2>{{ roselia.langOf("成员", "メンバー", "Members")}}</h2>
+        <h2>{{ roselia.langOf("成员", "メンバー", "Members")}}<button class="btn btn-primary btn-xs" onclick="roselia.member.changePicMod()">{{ roselia.member.picDiscrip }}</button></h2>
         <div class="row">
             <div class="col-xs-6 col-md-4" v-for="(member, idx) in roselia.memberList">
                 <a data-toggle="modal" v-bind:data-target="`#modal-member-${idx}`" class="thumbnail"
-                    v-bind:style="`background: ${member.encoreColor}`">
-                    <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.png`">
+                    v-bind:style="`background: ${member.encoreColor}`" :onclick="`roselia.member.open(${idx})`">
+                    <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.${roselia.member.picSuffix}`">
                     <div class="caption">
                         {{ member.role }}.{{ member[roselia.lang+"Name"] }} - CV:{{ roselia.langOf(member, "CVName") }}
                     </div>
                     
                 </a>
             </div>
-            
+        </div>
+        <div class="row" v-if="roselia.member.openCount === roselia.member.upper">
+            <div class="col-xs-6 col-md-6 col-xs-offset-3">
+                <div class="thumbnail">
+                    <img src="static/img/member_cv_all.jpg">
+                    <div class="caption">
+                        ありがとうございました。
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     </div>
     
@@ -166,6 +176,14 @@
                                 <ul>
                                     <li v-for="link in album.links"><a v-bind:href="link.link" target="_blank">{{ link.origin }}</a></li>
                                 </ul>
+                                <div v-if="album.extension" v-for="ext in album.extension">
+                                    <h4>{{ ext.title }}</h4>
+                                    <ul v-if="roselia.utils.isObjFunc('Array')(ext.content)">
+                                        <li v-for="el in ext.content">{{ roselia.langOf(el) }}</li>
+                                    </ul>
+                                    <p v-else style="text-indent:2em;">{{ roselia.langOf(ext.content) }}</p>
+    
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -183,7 +201,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img class="img-responsive" v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.png`">
+                            <img class="img-responsive" v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.memberPicUpper)}.${roselia.member.picSuffix}`">
+                            <img class="img-responsive" v-bind:src="`static/img/cv_${member.enCVName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.cvPicUpper)}.jpg`" style="margin-top: 5%;">
                         </div>
                         <div class="col-md-6">
                             <div class="page-header">
@@ -198,7 +217,16 @@
                             <h4>{{({cn: "链接", jp:"リンク", en: "Links"})[roselia.lang]}}</h4>
                             <ul>
                                 <li><a :href="`https://zh.moegirl.org/${member.cnName}`" target="_blank">萌娘百科<span class="heimu">（页面补充中）</span></a></li>
+                                <li><a :href="`https://zh.moegirl.org/${member.cnCVName}`" target="_blank">萌娘百科（CV）</a></li>
                             </ul>
+                            <div v-if="member.extension" v-for="ext in member.extension">
+                                <h4>{{ ext.title }}</h4>
+                                <ul v-if="roselia.utils.isObjFunc('Array')(ext.content)">
+                                    <li v-for="el in ext.content">{{ roselia.langOf(el) }}</li>
+                                </ul>
+                                <p v-else style="text-indent:2em;">{{ roselia.langOf(ext.content) }}</p>
+
+                            </div>
                         </div>
                     </div>
                 </div>

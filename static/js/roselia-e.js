@@ -59,9 +59,101 @@
                 return res;
             }
             return template;//Can't render.
+        },
+        debounce(func, delay){
+            let tmr;
+            return (...args) => {
+                clearTimeout(tmr);
+                tmr = setTimeout(() => func(...args), delay);
+            }
+        },
+        throttle(func, threshold){
+            let last=0, tmr;
+            return (...args) => {
+                let now = new Date;
+                clearTimeout(tmr);
+                if(now - last < threshold){
+                    tmr = setTimeout(() => func(...args), threshold);
+                } else {
+                    last = now;
+                    func(...args);
+                }
+            }
         }
-        
     };
+    let utils = _;
+    roselia.LazyLoad = function($){
+        let _ = {
+            extend: $.extend,
+            deepExtend(...args){
+                return this.extend(true, ...args);
+            },
+            render: utils.render,
+            partition(arr, cond){
+                let res=[[],[]];
+                arr.forEach(v => res[cond(v)^1].push(v));
+                return res;
+            },
+            debounce: utils.debounce,
+            throttle: utils.throttle
+        };
+        let AdovecLazyLoad = function(opts){
+            let defaults = {
+                load: true,
+                placeHolder: "static/img/logo.png",
+                renderPlaceHolder: false,
+                selector: "img",
+                changePlaceHolder: true,
+                prefix: "roselia",
+                onscrolledimg: null,
+                delim: ["{{", "}}"],
+                backupSrc: true,
+                throttleRate: 500
+            };
+            this.alive = false;
+            let options = this.options = _.deepExtend({}, defaults, opts);
+            this.setOption = function(o){
+                this.options = _.deepExtend({}, defaults, opts);
+                return this;
+            };
+            this.load = function(){
+                this.alive && this.destroy();
+                this.alive = true;
+                this.pics = document.querySelectorAll(options.selector);
+                this.pics.forEach = this.pics.forEach || [].forEach;
+                if(this.options.changePlaceHolder){
+                    this.pics.forEach(e => {
+                        let attr = options.prefix+"-src";
+                        options.backupSrc && e.setAttribute(attr, e.src);
+                        e.src = options.changePlaceHolder?_.render(options.placeHolder, e, options.delim):options.placeHolder;
+                    });
+                }
+                this.handler();
+                addEventListener("scroll", this.handler);
+            };
+            this.handler = _.throttle(function(e){
+                let curY = document.documentElement.scrollTop, height = window.innerHeight;
+                return (new Promise(resolve => {
+                    resolve(_.partition(this.pics, e => (e.y >= curY && e.y <= curY + height)));
+                })).then(([scrolled, remain]) => {
+                    scrolled.forEach(e => e.src = e.getAttribute(this.options.prefix+"-src") || e.src);
+                    return this.pics = remain;
+                }).then(e => (e.length||this.destroy(), e)).then(imgs => this.options.onscrolledimg && this.options.onscrolledimg(imgs));
+            }.bind(this), options.throttleRate);
+            this.destroy = function(){
+                this.alive = false;
+                this.pics.forEach(e => e.src = e.getAttribute(this.options.prefix+"-src") || e.src);
+                removeEventListener("scroll", this.handler);
+            };
+            this.options.load && this.load();
+
+        };
+        AdovecLazyLoad.of = function(o){
+            return new AdovecLazyLoad(o);
+        };
+        AdovecLazyLoad.utils = _;
+        return AdovecLazyLoad;
+    }(jQuery);
     roselia.memberList = [
         {
             jpName: "湊友希那",
@@ -74,7 +166,8 @@
             enCVName: "Aiba Aina",
             bloodType: "A",
             horoscope: "天蝎",
-            encoreColor: "#c67cb5"
+            encoreColor: "#c67cb5",
+            memberPicUpper: 2
         },
         {
             jpName: "氷川紗夜",
@@ -87,7 +180,8 @@
             enCVName: "Kudou Haruka",
             bloodType: "AB",
             horoscope: "双鱼",
-            encoreColor: "#81d8d4"
+            encoreColor: "#81d8d4",
+            memberPicUpper: 2
         },
         {
             jpName: "今井リサ",
@@ -100,7 +194,9 @@
             enCVName: "Endō Yurika",
             bloodType: "O",
             horoscope: "处女",
-            encoreColor: "#fc926c"
+            encoreColor: "#fc926c",
+            memberPicUpper: 2,
+            cvPicUpper: 2
         },
         {
             jpName: "宇田川あこ",
@@ -113,7 +209,8 @@
             enCVName: "Sakuragawa Megu",
             bloodType: "B",
             horoscope: "巨蟹",
-            encoreColor: "#fb81ca"
+            encoreColor: "#fb81ca",
+            memberPicUpper: 2
         },
         {
             jpName: "白金燐子",
@@ -126,9 +223,32 @@
             enCVName: "Akesaka Satomi",
             bloodType: "O",
             horoscope: "天秤",
-            encoreColor: "#cbc5ce"
+            encoreColor: "#cbc5ce",
+            memberPicUpper: 2
         }
     ];
+    roselia.memberList.forEach(m => {
+        m.memberPicUpper = m.memberPicUpper || 2;
+        m.cvPicUpper = m.cvPicUpper || 1;
+    })
+    roselia.member = {
+        opened: roselia.memberList.map(e => 0),
+        openCount: 0,
+        upper: roselia.memberList.length,
+        open(idx){
+            this.openCount += this.opened[idx]^1;
+            this.opened[idx] = 1;
+        },
+        picMod: 0,
+        picSuffix: "jpg",
+        picDiscrip: "流畅体验",
+        changePicMod(){
+            this.picMod ^= 1;
+            this.picSuffix = ["jpg", "png"][this.picMod];
+            this.picDiscrip = ["流畅体验", "丝滑画质"][this.picMod];
+            roselia.mainVue.$nextTick(() => roselia.lazyload.load());
+        }
+    };
     roselia.single = [
         {
             id: 1,
@@ -138,7 +258,7 @@
             links: [
                 {
                     origin: "BanG Dream",
-                    link: "https://www.bang-dream.com/cd/roselia-1st-single-%E3%80%8Cblack-shout%E3%80%8D/"
+                    link: "https://bang-dream.com/cd/roselia-1st-single-%E3%80%8Cblack-shout%E3%80%8D/"
                 },
                 {
                     origin: "NetEase",
@@ -158,7 +278,7 @@
             links: [
                 {
                     origin: "BanG Dream",
-                    link: "https://www.bang-dream.com/cd/roselia-2ndsg/"
+                    link: "https://bang-dream.com/cd/roselia-2ndsg/"
                 },
                 {
                     origin: "NetEase",
@@ -174,7 +294,7 @@
             links: [
                 {
                     origin: "BanG Dream",
-                    link: "https://www.bang-dream.com/cd/roselia-3rd-single/"
+                    link: "https://bang-dream.com/cd/roselia-3rd-single/"
                 },
                 {
                     origin: "NetEase",
@@ -190,7 +310,7 @@
             links: [
                 {
                     origin: "BanG Dream",
-                    link: "https://www.bang-dream.com/cd/roselia4th/"
+                    link: "https://bang-dream.com/cd/roselia4th/"
                 },
                 {
                     origin: "NetEase",
@@ -206,9 +326,13 @@
             links: [
                 {
                     origin: "BanG Dream",
-                    link: "https://www.bang-dream.com/cd/roselia_5th/"
+                    link: "https://bang-dream.com/cd/roselia_5th/"
                 }
-            ]
+            ],
+            extension: [{
+                title: "注",
+                content: ["该图为游戏假封面"]
+            }]
         },
     ];
     roselia.moreLinks = [
@@ -227,13 +351,18 @@
     ];
     roselia.langOf = function(){
         if(arguments.length === 1){
-            return arguments[0][roselia.lang];
+            if(this.utils.isObjFunc('Array')(arguments[0])) return this.langOf(...arguments[0]);
+            return this.utils.isObjFunc('String')(arguments[0]) ? arguments[0] : arguments[0][roselia.lang];
         }
         if(arguments.length === 2){
             return arguments[0][roselia.lang + arguments[1]];
         }
         return arguments[this.languages.indexOf(roselia.lang)] || arguments[0];
     };
+    roselia.randomPick = function(from, to, then){//Pick random in [from, to)
+        then = then || (n => n?n:"");
+        return then(Math.floor(Math.random()*(to - from) + from));
+    }
     roselia.languages = ['cn', 'jp', 'en'];
     roselia.displayLanguages = ['中文', '日本語', 'English'];
     let curLang = (navigator.language || navigator.browserLanguage).toLowerCase();
@@ -250,6 +379,11 @@ $(function(){
         data: {
             roselia
         }
+    });
+    roselia.lazyload = roselia.LazyLoad.of({load: false});
+    roselia.mainVue.$nextTick(() => roselia.lazyload.load());
+    $('.modal').on('shown.bs.modal', function (e) {
+        roselia.lazyload.handler();
     });
     $(".heimu").mouseover((e) => {
         $(e.target).css("color", "white");

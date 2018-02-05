@@ -20,6 +20,11 @@
     roselia.langOf(...args) | args.length > 2
         => 根据roselia.languages的顺序返回当前语言所对应的参数。
 
+---2.6更新---
+功能：增加了图片懒加载功能（来自本人的另外的项目：Adovec-Utils，欢迎给Star/批判一番），可以在专辑和成员的Modal里面添加扩展信息。（extension: [{title:, content:}]）
+以及画质切换（主要是jpg压缩了之后在edge里面渲染得太恶心了，还好我用Chrome）
+内容：增加了小姐姐的图片，和5单假封面。
+
 ## 主要信息
 主要信息存放在`roselia.memberList`, `roselia.single`, `roselia.moreLinks` 中。
 Roselia 要出专辑了，开心，模板到时候公布信息后再改吧。PP'P出九单又如何？(HHW: 我终于要出2单了hhh)

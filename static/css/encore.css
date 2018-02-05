@@ -17,6 +17,13 @@ a, a:hover, a:focus, a:visited, a:checked {
     height: 100px;
 }
 
+::selection{
+    background-color: rgb(156, 212, 234);
+}
+::-moz-selection{
+    background-color: rgb(156, 212, 234);
+}
+
 .navbar-aq .navbar-nav > li > a {
     line-height: 60px;
     font-size: 1.2em;
@@ -205,6 +212,10 @@ span.heimu a:link{background:black;color:black !important;}
 span.heimu a:visited{background:black;color:black !important;}
 span.heimu a:hover {background:black;color:black !important;}
 span.heimu a:active {background:black;color:black !important;}
+span.heimu ::selection{
+    color: #f5f8fa;
+}
+span.heimu ::-moz-selection{color: #f5f8fa;}
 .EdgeButton,.EdgeButton:visited {
     border-radius: 100px;
     box-shadow: none;
