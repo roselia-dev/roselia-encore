@@ -363,6 +363,7 @@
         then = then || (n => n?n:"");
         return then(Math.floor(Math.random()*(to - from) + from));
     }
+    roselia.imgBase = ["static/img/", "https://app.roselia.moe/encore/"][roselia.randomPick(0, 2, x=>x)];
     roselia.languages = ['cn', 'jp', 'en'];
     roselia.displayLanguages = ['中文', '日本語', 'English'];
     let curLang = (navigator.language || navigator.browserLanguage).toLowerCase();

@@ -60,7 +60,7 @@
     <div class="member part">
         <div class="row">
             <div v-for="member in roselia.birthdayMember" class="col-md-6 col-md-offset-3 thumbnail" v-bind:style="`background: ${member.encoreColor};`">
-                <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.${roselia.member.picSuffix}`">
+                <img v-bind:src="`${roselia.imgBase}member_${member.enName.split(' ')[1].toLowerCase()}.${roselia.member.picSuffix}`">
                     <h3 class="text-center">{{ roselia.langOf("生日快乐", "お誕生日おめでとう", "Happy birthday") }}, {{ roselia.langOf(member, "Name") }}!</h3>
             </div>
                     
@@ -70,7 +70,7 @@
             <div class="col-xs-6 col-md-4" v-for="(member, idx) in roselia.memberList">
                 <a data-toggle="modal" v-bind:data-target="`#modal-member-${idx}`" class="thumbnail"
                     v-bind:style="`background: ${member.encoreColor}`" :onclick="`roselia.member.open(${idx})`">
-                    <img v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}.${roselia.member.picSuffix}`">
+                    <img v-bind:src="`${roselia.imgBase}member_${member.enName.split(' ')[1].toLowerCase()}.${roselia.member.picSuffix}`">
                     <div class="caption">
                         {{ member.role }}.{{ member[roselia.lang+"Name"] }} - CV:{{ roselia.langOf(member, "CVName") }}
                     </div>
@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col-xs-6 col-md-3" v-for="album in roselia.single">
                     <a class="thumbnail" data-toggle="modal" v-bind:data-target="`#modal-single-${album.id}`">
-                        <img v-bind:src="`static/img/Single_${album.id}.jpg`">
+                        <img v-bind:src="`${roselia.imgBase}Single_${album.id}.jpg`">
                         <div class="caption">
                             {{ album.title }}
                         </div>
@@ -160,7 +160,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img class="img-responsive" v-bind:src="`static/img/Single_${album.id}.jpg`">
+                            <img class="img-responsive" v-bind:src="`${roselia.imgBase}Single_${album.id}.jpg`">
                         </div>
                         <div class="col-md-6">
                                 <div class="page-header">
@@ -201,8 +201,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img class="img-responsive" v-bind:src="`static/img/member_${member.enName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.memberPicUpper)}.${roselia.member.picSuffix}`">
-                            <img class="img-responsive" v-bind:src="`static/img/cv_${member.enCVName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.cvPicUpper)}.jpg`" style="margin-top: 5%;">
+                            <img class="img-responsive" v-bind:src="`${roselia.imgBase}member_${member.enName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.memberPicUpper)}.${roselia.member.picSuffix}`">
+                            <img class="img-responsive" v-bind:src="`${roselia.imgBase}cv_${member.enCVName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.cvPicUpper)}.jpg`" style="margin-top: 5%;">
                         </div>
                         <div class="col-md-6">
                             <div class="page-header">
@@ -285,7 +285,7 @@
 <script defer src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script defer src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
-<script defer src="static/js/roselia-e.js"></script>
+<script defer src="static/js/roselia-e.js?v=1"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112692226-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
