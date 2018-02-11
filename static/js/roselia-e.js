@@ -189,7 +189,7 @@
             enName: "Imai Lisa",
             birthday: "8-25",
             role: "Ba",
-            jpCVName: "遠藤えゆりか",
+            jpCVName: "遠藤ゆりか",
             cnCVName:"远藤祐里香",
             enCVName: "Endō Yurika",
             bloodType: "O",
@@ -321,7 +321,7 @@
         {
             id: 5,
             title: "Opera of the wasteland",
-            track: ["Opera of the wasteland", "タイトル未定", "Opera of the wasteland -instrumental- ", "タイトル未定 -instrumental- "],
+            track: ["Opera of the wasteland", "軌跡", "Opera of the wasteland -instrumental- ", "軌跡 -instrumental- "],
             releaseDate: "2018-3-21",
             links: [
                 {
@@ -330,8 +330,8 @@
                 }
             ],
             extension: [{
-                title: "注",
-                content: ["该图为游戏假封面"]
+                title: "P.S.",
+                content: ["和PP'P的⑨单一起买有特典？买买买（钱包卒）"]
             }]
         },
     ];
