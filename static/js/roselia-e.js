@@ -7,40 +7,10 @@
         isObjFunc(name) {
             return o => ({}).toString.call(o) === '[object ' + name + ']';
         },
-        extend: (function() {
-            var isObject = isObjFunc('Object'),
-                isArray = isObjFunc('Array'),
-                isBoolean = isObjFunc('Boolean')
-            return function extend() {
-                var index = 0,isDeep = false,obj,copy,destination,source,i
-                if(isBoolean(arguments[0])) {
-                    index = 1
-                    isDeep = arguments[0]
-                }
-                for(i = arguments.length - 1;i>index;i--) {
-                    destination = arguments[i - 1]
-                    source = arguments[i]
-                    if(isObject(source) || isArray(source)) {
-                        for(var property in source) {
-                            obj = source[property]
-                            if(isDeep && ( isObject(obj) || isArray(obj) ) ) {
-                                copy = isObject(obj) ? {} : []
-                                var extended = extend(isDeep,copy,obj)
-                                destination[property] = extended 
-                            }else {
-                                destination[property] = source[property]
-                            }
-                        }
-                    } else {
-                        destination = source
-                    }
-                }
-                return destination
-            }
-        })(),
+        extend: $.extend,
         sameDate: (a,b,m) => (a!=="never" && a!=="else") && (a==="always" || (m || ["Month", "Date"]).map(s => s.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())).every(attr => equalsOn(x => x["get"+attr]&&x["get"+attr]())(new Date(a), b))),
         deepExtend(...args){
-        return this.extend(true, ...args);
+            return this.extend(true, ...args);
         },
         render(template, context, delim){// A not so naive template engine.
             const funcTemplate = expr => `with(data || {}) {return (${expr});}`;
@@ -79,6 +49,23 @@
                     func(...args);
                 }
             }
+        },
+        setPath(...path){
+            window.history.pushState({}, "", "#" + path.join("/"));
+        },
+        getPath(){
+            if(!window.location.hash.length) return [];
+            return window.location.hash.substring(1);
+        },
+        onPathChange(then){
+            window.addEventListener("popstate", then);
+        },
+        positionNum(n){
+            return n>10&&n<20?"th":(["th", "st", "nd", "rd"][n%10] || "th");
+        },
+        openPath(path){
+            if(path.length<3) $(".modal.in").attr('manual', true).modal('hide');
+            else $(".modal").filter((_,e)=> (e.getAttribute("roselia-path")||"").toLowerCase() === path.toLowerCase()).attr('manual', true).modal('show');
         }
     };
     let utils = _;
@@ -230,7 +217,7 @@
     roselia.memberList.forEach(m => {
         m.memberPicUpper = m.memberPicUpper || 2;
         m.cvPicUpper = m.cvPicUpper || 1;
-    })
+    });
     roselia.member = {
         opened: roselia.memberList.map(e => 0),
         openCount: 0,
@@ -362,7 +349,7 @@
     roselia.randomPick = function(from, to, then){//Pick random in [from, to)
         then = then || (n => n?n:"");
         return then(Math.floor(Math.random()*(to - from) + from));
-    }
+    };
     roselia.imgBase = ["static/img/", "https://app.roselia.moe/encore/"][roselia.randomPick(0, 2, x=>x)];
     roselia.languages = ['cn', 'jp', 'en'];
     roselia.displayLanguages = ['中文', '日本語', 'English'];
@@ -382,13 +369,29 @@ $(function(){
         }
     });
     roselia.lazyload = roselia.LazyLoad.of({load: false});
-    roselia.mainVue.$nextTick(() => roselia.lazyload.load());
-    $('.modal').on('shown.bs.modal', function (e) {
+    roselia.mainVue.$nextTick(() => {
+        roselia.lazyload.load();
+        roselia.utils.openPath(roselia.utils.getPath());
+    });
+    let $modal = $('.modal');
+    $modal.on('shown.bs.modal', function (e) {
         roselia.lazyload.handler();
+        let targ = $(e.target);
+        if(!targ.attr("manual")){
+            let path = e.target.getAttribute("roselia-path");
+            path && roselia.utils.setPath(path);
+        }
+        targ.attr("manual", "");
+    });
+    $modal.on("hidden.bs.modal", function (e) {
+        let targ = $(e.target);
+        targ.attr("manual") || roselia.utils.setPath([]);
+        targ.attr("manual", "");
     });
     $(".heimu").mouseover((e) => {
         $(e.target).css("color", "white");
     }).mouseout((e) => {
         $(e.target).css("color", "black");
     });
+    addEventListener("popstate", e => roselia.utils.openPath(roselia.utils.getPath()));
 });

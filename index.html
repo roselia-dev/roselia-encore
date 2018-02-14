@@ -149,7 +149,8 @@
             </div>
         </div>
         
-    <div class="modal fade" v-bind:id="`modal-single-${album.id}`" tabindex="-1" role="dialog" v-for="album in roselia.single">
+    <div :roselia-path="`single/${album.id}${roselia.utils.positionNum(album.id)}`"
+         class="modal fade" v-bind:id="`modal-single-${album.id}`" tabindex="-1" role="dialog" v-for="album in roselia.single">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -190,7 +191,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" v-bind:id="`modal-member-${idx}`" tabindex="-1" role="dialog" v-for="(member, idx) in roselia.memberList">
+    <div class="modal fade" :roselia-path="`member/${member.enName.split(' ')[1]}`"
+         v-bind:id="`modal-member-${idx}`" tabindex="-1" role="dialog" v-for="(member, idx) in roselia.memberList">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -211,7 +213,7 @@
                             <h4>CV</h4>
                             <p style="text-indent:2em;">{{ member[roselia.lang+"CVName"] }}</p>
                             <h4>{{({cn: "生日", jp:"誕生日", en: "Birthday"})[roselia.lang]}}</h4>
-                            <p style="text-indent:2em;" v-text='(d => `${d[0]}月${d[1]}日`)(member.birthday.split("-"))'></p>
+                            <p style="text-indent:2em;" v-text='(([m,d]) => `${m}月${d}日`)(member.birthday.split("-"))'></p>
                             <h4>{{({cn: "血型", jp:"血液型", en: "Blood Type"})[roselia.lang]}}</h4>
                             <p style="text-indent:2em;">{{ member.bloodType }}</p>
                             <h4>{{({cn: "链接", jp:"リンク", en: "Links"})[roselia.lang]}}</h4>
@@ -233,7 +235,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modal-player" tabindex="-1" role="dialog">
+    <div class="modal fade" roselia-path="player" id="modal-player" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -297,9 +299,10 @@
 <script>
 (function() {
 var d = document, s = d.createElement('script');
+s.async=true;
 s.src = 'https://roselia-encore.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+(d.body).appendChild(s);
 })();
 </script>
 </body>
