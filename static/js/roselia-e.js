@@ -322,6 +322,24 @@
             }]
         },
     ];
+    roselia.album = [
+        {
+            id: 1,
+            title: "Anfang",
+            track: ["新曲#1", "新曲#2"].concat(roselia.single.slice(0,5).map(a => a.track.slice(0,2)).reduce((x,v)=>x.concat(v), [])),
+            releaseDate: "2018-5-2",
+            links: [
+                {
+                    origin: "BanG Dream",
+                    link: "https://bang-dream.com/cd/roselia-1st%E3%82%A2%E3%83%AB%E3%83%90%E3%83%A0%E3%80%8Canfang%E3%80%8D/"
+                }
+            ],
+            extension: [{
+                title: "P.S.",
+                content: ["嘛，这个好像是买Blu-ray付生産限定盤更有意义呢，通常版的东西就少得可怜了，不过就当单曲买了也不亏（3200+JPY）"]
+            }]
+        },
+    ];
     roselia.moreLinks = [
         {
             description: "BanG Dream!导航站",
