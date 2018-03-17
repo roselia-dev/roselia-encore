@@ -2,3 +2,6 @@
 .idea/*.*
 s.py
 .idea/inspectionProfiles/Project_Default.xml
+static/*
+scripts/node_modules/*
+*.pyc

@@ -21,9 +21,42 @@
         => 根据roselia.languages的顺序返回当前语言所对应的参数。
 
 ---2.6更新---
+
 功能：增加了图片懒加载功能（来自本人的另外的项目：Adovec-Utils，欢迎给Star/批判一番），可以在专辑和成员的Modal里面添加扩展信息。（extension: [{title:, content:}]）
 以及画质切换（主要是jpg压缩了之后在edge里面渲染得太恶心了，还好我用Chrome）
 内容：增加了小姐姐的图片，和5单假封面。
+
+---3.18---
+
+内容：增加了1专的详细信息
+
+功能：将`static`移动至`static_assets`，辅以`scripts`中的部分脚本。
+
+`bootstrap.py` 将`static_assets`中的图片和JS压缩，增加访问速度。
+
+`TrackParser.py|clj` 将专辑信息转化为`roselia-e.js`中的信息文件。
+
+`RoseliaEncore.scala` 利用[NaiveJSON](https://github.com/Somainer/NaiveJSON)，将官方网页转换为专辑信息（其实就是爬虫，但是我偏不用Python写）
+
+以5单为例，url="https://bang-dream.com/cd/roselia_5th/"时，结果：
+
+```JSON
+{
+  "id": 5,
+  "title": "Opera of the wasteland",
+  "track": [
+    "Opera of the wasteland",
+    "軌跡",
+    "Opera of the wasteland -instrumental-",
+    "軌跡 -instrumental-"
+  ],
+  "releaseDate": "2018-3-21"
+}
+```
+
+这个是可以直接粘贴到`roselia-e.js`里面的，将`TrackParser`的`group`替换为其他小队，就可以爬取其他小队的信息了。
+
+~~不许摸你的格式能不能整齐点？~~
 
 ## 主要信息
 主要信息存放在`roselia.memberList`, `roselia.single`, `roselia.moreLinks` 中。
