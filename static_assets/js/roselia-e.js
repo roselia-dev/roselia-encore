@@ -314,6 +314,10 @@
                 {
                     origin: "BanG Dream",
                     link: "https://bang-dream.com/cd/roselia_5th/"
+                },
+                {
+                    origin: "NetEase",
+                    link: "http://music.163.com/album?id=37987030"
                 }
             ],
             extension: [{
