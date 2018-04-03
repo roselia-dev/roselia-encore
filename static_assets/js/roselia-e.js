@@ -384,6 +384,7 @@
     window.roselia = roselia;
 }(window));
 $(function(){
+    let TITLE = document.title;
     roselia.mainVue = new Vue({
         el: "#main",
         data: {
@@ -404,11 +405,13 @@ $(function(){
             path && roselia.utils.setPath(path);
         }
         targ.attr("manual", "");
+        document.title = targ.find('.modal-title').text() || document.title;
     });
     $modal.on("hidden.bs.modal", function (e) {
         let targ = $(e.target);
         targ.attr("manual") || roselia.utils.setPath([]);
         targ.attr("manual", "");
+        document.title = TITLE;
     });
     $(".heimu").mouseover((e) => {
         $(e.target).css("color", "white");
