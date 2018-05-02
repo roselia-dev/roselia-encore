@@ -336,6 +336,10 @@
                 {
                     origin: "BanG Dream",
                     link: "https://bang-dream.com/cd/roselia-1st%E3%82%A2%E3%83%AB%E3%83%90%E3%83%A0%E3%80%8Canfang%E3%80%8D/"
+                },
+                {
+                    origin: "NetEase",
+                    link: "http://music.163.com/m/album?id=38509280"
                 }
             ],
             extension: [{
@@ -344,6 +348,27 @@
             }]
         },
     ];
+    roselia.cover = [
+        {
+            id: 1,
+            title: "バンドリ！ ガールズバンドパーティ！ カバーコレクション Vol.1",
+            track: ["光るなら / Poppin’Party", "千本桜 / Poppin’Party", "アスノヨゾラ哨戒班 / Afterglow", "READY STEADY GO / Afterglow", "secret base ～君がくれたもの～ / Pastel＊Palettes", "ふわふわ時間 / Pastel＊Palettes", "魂のルフラン / Roselia", "ETERNAL BLAZE / Roselia", "いーあるふぁんくらぶ / ハロー、ハッピーワールド！", "ロメオ / ハロー、ハッピーワールド！"],
+            releaseDate: "2018-06-27",
+            links: [
+                {
+                    origin: "BanG Dream",
+                    link: "https://bang-dream.com/cd/%E3%83%90%E3%83%B3%E3%83%89%E3%83%AA%EF%BC%81-%E3%82%AC%E3%83%BC%E3%83%AB%E3%82%BA%E3%83%90%E3%83%B3%E3%83%89%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%EF%BC%81-%E3%82%AB%E3%83%90%E3%83%BC%E3%82%B3%E3%83%AC/"
+                }
+            ]
+        }
+    ];
+    let today = new Date;
+    ["single", "album", "cover"].map(x => roselia[x]).forEach(x => x.forEach(album => {
+        if(roselia.utils.sameDate(album.releaseDate, today, ['month', 'date', 'full year'])){
+            album.extension = album.extension || [];
+            album.extension.push({title: "Released Today!", content: {cn: '今日发售！', jp: '今発売！', en: 'Released Today!'}});
+        }
+    }));
     roselia.moreLinks = [
         {
             description: "BanG Dream!导航站",
@@ -378,7 +403,6 @@
     let curLang = (navigator.language || navigator.browserLanguage).toLowerCase();
     let matchLang = roselia.languages.filter(n => curLang.indexOf(n) > -1);
     roselia.lang = matchLang.length? matchLang[0] : 'cn';
-    let today = new Date;
     roselia.birthdayMember = roselia.memberList.filter(m => _.sameDate(m.birthday, today));
     roselia.releaseSingle = roselia.single.filter(m => _.sameDate(m.releaseDate, today, ["full year", "month", 'date']));//看上去 这个功能没有什么用。
     window.roselia = roselia;
