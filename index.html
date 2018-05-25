@@ -65,7 +65,10 @@
             </div>
                     
         </div>
-        <h2>{{ roselia.langOf("成员", "メンバー", "Members")}}<button class="btn btn-primary btn-xs" onclick="roselia.member.changePicMod()">{{ roselia.member.picDiscrip }}</button></h2>
+        <h2>{{ roselia.langOf("成员", "メンバー", "Members")}}
+            <!--<button class="btn btn-primary btn-xs" onclick="roselia.member.changePicMod()">{{ roselia.member.picDiscrip }}</button>-->
+            <button v-if="roselia.lazyload && roselia.lazyload.alive" class="btn btn-primary btn-xs" onclick="roselia.lazyload.destroy()">部分图片未加载?</button>
+        </h2>
         <div class="row">
             <div class="col-xs-6 col-md-4" v-for="(member, idx) in roselia.memberList">
                 <a data-toggle="modal" v-bind:data-target="`#modal-member-${idx}`" class="thumbnail"
@@ -314,7 +317,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <img class="img-responsive" v-bind:src="`${roselia.imgBase}member_${member.enName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.memberPicUpper)}.${roselia.member.picSuffix}`">
-                            <img class="img-responsive" v-bind:src="`${roselia.imgBase}cv_${member.enCVName.split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.cvPicUpper)}.jpg`" style="margin-top: 5%;">
+                            <img class="img-responsive" v-bind:src="`${roselia.imgBase}cv_${member.enCVName.split('→').pop().split(' ')[1].toLowerCase()}${roselia.randomPick(0, member.cvPicUpper)}.jpg`" style="margin-top: 5%;">
                         </div>
                         <div class="col-md-6">
                             <div class="page-header">
@@ -328,8 +331,8 @@
                             <p style="text-indent:2em;">{{ member.bloodType }}</p>
                             <h4>{{({cn: "链接", jp:"リンク", en: "Links"})[roselia.lang]}}</h4>
                             <ul>
-                                <li><a :href="`https://zh.moegirl.org/${member.cnName}`" target="_blank">萌娘百科<span class="heimu">（页面补充中）</span></a></li>
-                                <li><a :href="`https://zh.moegirl.org/${member.cnCVName}`" target="_blank">萌娘百科（CV）</a></li>
+                                <li><a :href="`https://zh.moegirl.org/${member.cnName}`" target="_blank">萌娘百科</a></li>
+                                <li v-for="name in member.cnCVName.split('→').map(s => s.trim())"><a :href="`https://zh.moegirl.org/${name}`" target="_blank">萌娘百科（{{ name }}）</a></li>
                             </ul>
                             <div v-if="member.extension" v-for="ext in member.extension">
                                 <h4>{{ ext.title }}</h4>

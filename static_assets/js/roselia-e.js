@@ -121,7 +121,7 @@
             this.handler = _.throttle(function(e){
                 let curY = document.documentElement.scrollTop, height = window.innerHeight;
                 return (new Promise(resolve => {
-                    resolve(_.partition(this.pics, e => (e.y >= curY && e.y <= curY + height)));
+                    resolve(_.partition(this.pics, e => (e.y && e.y <= curY + height))); //Prev: e.y >= curY && e.y <= curY + height
                 })).then(([scrolled, remain]) => {
                     scrolled.forEach(e => e.src = e.getAttribute(this.options.prefix+"-src") || e.src);
                     return this.pics = remain;
@@ -176,14 +176,14 @@
             enName: "Imai Lisa",
             birthday: "8-25",
             role: "Ba",
-            jpCVName: "遠藤ゆりか",
-            cnCVName:"远藤祐里香",
-            enCVName: "Endō Yurika",
+            jpCVName: "遠藤ゆりか → 中島由貴",
+            cnCVName:"远藤祐里香 → 中岛由贵",
+            enCVName: "Endō Yurika → Nakashima Yuki",
             bloodType: "O",
             horoscope: "处女",
             encoreColor: "#fc926c",
             memberPicUpper: 2,
-            cvPicUpper: 2
+            cvPicUpper: 1
         },
         {
             jpName: "宇田川あこ",
@@ -397,7 +397,7 @@
         then = then || (n => n?n:"");
         return then(Math.floor(Math.random()*(to - from) + from));
     };
-    roselia.imgBase = ["static/img/", "https://app.roselia.moe/encore/"][roselia.randomPick(0, 2, x=>x)];
+    roselia.imgBase = ["static/img/", "https://app.roselia.moe/encore/"][0 && roselia.randomPick(0, 2, x=>x)];// Diable app.roselia.moe
     roselia.languages = ['cn', 'jp', 'en'];
     roselia.displayLanguages = ['中文', '日本語', 'English'];
     let curLang = (navigator.language || navigator.browserLanguage).toLowerCase();
@@ -422,7 +422,6 @@ $(function(){
     });
     let $modal = $('.modal');
     $modal.on('shown.bs.modal', function (e) {
-        roselia.lazyload.handler();
         let targ = $(e.target);
         if(!targ.attr("manual")){
             let path = e.target.getAttribute("roselia-path");
@@ -430,6 +429,7 @@ $(function(){
         }
         targ.attr("manual", "");
         document.title = targ.find('.modal-title').text() || document.title;
+        roselia.lazyload.handler();
     });
     $modal.on("hidden.bs.modal", function (e) {
         let targ = $(e.target);
