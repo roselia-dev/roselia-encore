@@ -325,6 +325,22 @@
                 content: ["和PP'P的⑨单一起买有特典？买买买（钱包卒）"]
             }]
         },
+        {
+            id: 6,
+            title: "R",
+            track: ["R", "BLACK SHOUT(リマスターver.)", "Neo-Aspect(リマスターver.)", "R -instrumental-", "BLACK SHOUT(リマスターver.) -instrumental-"],
+            releaseDate: "2018/07/25",
+            links: [
+                {
+                    origin: "BanG Dream",
+                    link: "https://bang-dream.com/discographies/367"
+                }
+            ],
+            extension: [{
+                title: "P.S.",
+                content: ["BanG-Dream的网站改版了！（终于不用WordPress了）"]
+            }]
+        }
     ];
     roselia.album = [
         {
@@ -335,7 +351,7 @@
             links: [
                 {
                     origin: "BanG Dream",
-                    link: "https://bang-dream.com/cd/roselia-1st%E3%82%A2%E3%83%AB%E3%83%90%E3%83%A0%E3%80%8Canfang%E3%80%8D/"
+                    link: "https://bang-dream.com/discographies/113"
                 },
                 {
                     origin: "NetEase",
@@ -358,6 +374,10 @@
                 {
                     origin: "BanG Dream",
                     link: "https://bang-dream.com/cd/%E3%83%90%E3%83%B3%E3%83%89%E3%83%AA%EF%BC%81-%E3%82%AC%E3%83%BC%E3%83%AB%E3%82%BA%E3%83%90%E3%83%B3%E3%83%89%E3%83%91%E3%83%BC%E3%83%86%E3%82%A3%EF%BC%81-%E3%82%AB%E3%83%90%E3%83%BC%E3%82%B3%E3%83%AC/"
+                },
+                {
+                    origin: "NetEase",
+                    link: "http://music.163.com/m/album?id=38272155"
                 }
             ]
         }

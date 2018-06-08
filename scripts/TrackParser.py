@@ -11,10 +11,16 @@ def js_array(xs):
 
 def get_lines():
     ls = []
+    lst = False
     while True:
         s = input()
+        
         if not s:
-            break
+            if lst:
+                break
+            lst = True
+        else:
+            lst = False
         ls.append(s)
     return "\n".join(ls)
 
