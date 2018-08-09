@@ -334,11 +334,15 @@
                 {
                     origin: "BanG Dream",
                     link: "https://bang-dream.com/discographies/367"
+                },
+                {
+                    origin: "NetEase",
+                    link: "https://music.163.com/album?id=71852033"
                 }
             ],
             extension: [{
                 title: "P.S.",
-                content: ["BanG-Dream的网站改版了！（终于不用WordPress了）"]
+                content: ["BanG-Dream的网站改版了！（终于不用WordPress了）| Yuki真棒.jpg"]
             }]
         }
     ];
