@@ -153,7 +153,7 @@
             enCVName: "Aiba Aina",
             bloodType: "A",
             horoscope: "天蝎",
-            encoreColor: "#c67cb5",
+            encoreColor: "#890f87", //"#c67cb5",
             memberPicUpper: 2
         },
         {
@@ -167,7 +167,7 @@
             enCVName: "Kudou Haruka",
             bloodType: "AB",
             horoscope: "双鱼",
-            encoreColor: "#81d8d4",
+            encoreColor: "#00aabc", //"#81d8d4",
             memberPicUpper: 2
         },
         {
@@ -181,7 +181,7 @@
             enCVName: "Endō Yurika → Nakashima Yuki",
             bloodType: "O",
             horoscope: "处女",
-            encoreColor: "#fc926c",
+            encoreColor: "#dd2200", //"#fc926c",
             memberPicUpper: 2,
             cvPicUpper: 1
         },
@@ -196,7 +196,7 @@
             enCVName: "Sakuragawa Megu",
             bloodType: "B",
             horoscope: "巨蟹",
-            encoreColor: "#fb81ca",
+            encoreColor: "#dd0087", //"#fb81ca",
             memberPicUpper: 2
         },
         {
@@ -210,7 +210,7 @@
             enCVName: "Akesaka Satomi",
             bloodType: "O",
             horoscope: "天秤",
-            encoreColor: "#cbc5ce",
+            encoreColor: "#bbbbbb", //"#cbc5ce",
             memberPicUpper: 2
         }
     ];
@@ -429,6 +429,23 @@
     roselia.lang = matchLang.length? matchLang[0] : 'cn';
     roselia.birthdayMember = roselia.memberList.filter(m => _.sameDate(m.birthday, today));
     roselia.releaseSingle = roselia.single.filter(m => _.sameDate(m.releaseDate, today, ["full year", "month", 'date']));//看上去 这个功能没有什么用。
+    roselia.randomLyric = {
+        'album': '', 
+        'at': '', 
+        'id': 1, 
+        'lyric': '', 
+        'name': '', 
+        'type': ''
+    }
+    roselia.getLyric = function () {
+        return fetch('https://roselia.moe/blog/api/roselia/lyric/random').then(j => j.json()).then(data => {
+            data.link = `#${data.type}/${data.id}${utils.positionNum(data.id)}`;
+            const ls = data.lyric.split('\n')
+            data.jpLyric = ls[0]
+            data.cnLyric = ls[1]
+            roselia.randomLyric = data;
+        })
+    }
     window.roselia = roselia;
 }(window));
 $(function(){
@@ -467,4 +484,5 @@ $(function(){
         $(e.target).css("color", "black");
     });
     addEventListener("popstate", e => roselia.utils.openPath(roselia.utils.getPath()));
+    roselia.getLyric()
 });

@@ -17,6 +17,10 @@ a, a:hover, a:focus, a:visited, a:checked {
     height: 100px;
 }
 
+.white-text {
+    color: #fff !important;
+}
+
 ::selection{
     background-color: rgb(156, 212, 234);
 }
