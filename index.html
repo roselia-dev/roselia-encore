@@ -60,7 +60,7 @@
     <div class="member part">
         <div class="row">
             <div class="col-xs-6 col-md-4 col-md-offset-8 col-xs-offset-3">
-                <a class="text-center" :href="roselia.randomLyric.link">
+                <a class="text-center" data-toggle="modal" v-bind:data-target="`#modal-${roselia.randomLyric.type}-${roselia.randomLyric.id}`">
                     <p>{{ roselia.randomLyric.jpLyric }}</p>
                     <p>{{ roselia.randomLyric.cnLyric }}</p>
                     <p>{{ roselia.randomLyric.at }} {{roselia.randomLyric.name}} - {{roselia.randomLyric.album}} </p>
@@ -172,16 +172,20 @@
         <div class="more part">
             <h2>更多资源……</h2>
             <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="caption">
-                        <p>有待补充……</p>
-                        <del>其实我自己也不是很确定啦……</del>
-                    </div>
+                <div class="col-xs-6 col-md-3" v-for="video in roselia.recommandVideos">
+                    <a class="thumbnail" data-toggle="modal" v-bind:data-target="`#modal-video-${video.id}`">
+                        <img :src="video.data[0].img" v-if="video.isList">
+                        <img :src="video.data.img" v-else>
+
+                        <div class="caption">
+                            {{ video.name }}
+                        </div>
+                    </a>
                 </div>
                 <div class="col-xs-6 col-md-6">
                     <a href="https://search.bilibili.com/all?keyword=roselia" class="thumbnail" target="_blank">
                         <div class="caption">
-                            但是我至少可以帮你搜索B站
+                            同时我可以帮你搜索B站
                         </div>
                     </a>
                 </div>
@@ -319,6 +323,47 @@
             </div>
         </div>
     </div>
+    <div :roselia-path="`recommand/${video.name.replace(/\s/g, '-')}`"
+         class="modal fade" v-bind:id="`modal-video-${video.id}`" tabindex="-1" role="dialog" v-for="video in roselia.recommandVideos" v-if="video.isList">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ video.name }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="page-header">
+                                    <h2>{{ video.name }} <small v-if="video.ups.length == 1">{{ video.ups[0] }}</small></h2>
+                                </div>
+                                <h4>视频</h4>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3" v-for="v in video.data">
+                                        <a class="thumbnail" data-toggle="modal" :href="`https://www.bilibili.com/video/av${v.aid}`" target="_blank">
+                                            <img :src="v.img">
+                    
+                                            <div class="caption">
+                                                {{ v.title }} <small v-if="video.ups.length != 1"> By {{ v.up }}</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div v-if="video.extension" v-for="ext in video.extension">
+                                    <h4>{{ ext.title }}</h4>
+                                    <ul v-if="roselia.utils.isObjFunc('Array')(ext.content)">
+                                        <li v-for="el in ext.content">{{ roselia.langOf(el) }}</li>
+                                    </ul>
+                                    <p v-else style="text-indent:2em;">{{ roselia.langOf(ext.content) }}</p>
+    
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" :roselia-path="`member/${member.enName.split(' ')[1]}`"
          v-bind:id="`modal-member-${idx}`" tabindex="-1" role="dialog" v-for="(member, idx) in roselia.memberList">
         <div class="modal-dialog modal-lg">
@@ -382,6 +427,7 @@
         <div class="row">
             <h2>更多……</h2>
             <p>各位若有什么想法，欢迎来批判一番。</p>
+            <p><span class="heimu">啊，美工缺炸了，救命（一个人要弃疗了</span></p>
             <div class="col-xs-6 col-md-3 col-lg-2">
                 <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" href="mailto:me@roselia.moe">现在就批判一番</a>
             </div>
@@ -391,11 +437,13 @@
         </div>
         <div class="row">
             <h2>相关链接</h2>
-            <br/>
-            <div class="col-xs-6 col-md-3 col-lg-2" v-for="link in roselia.moreLinks">
-                <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" :href="link.target" target="_blank">
-                    {{ link.description }}
-                </a>
+            <div class="row">
+                <div class="col-xs-6 col-md-3 col-lg-2" v-for="link in roselia.moreLinks">
+                    <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" :href="link.target" target="_blank">
+                        {{ link.description }}
+                    </a>
+                    
+                </div>
             </div>
         </div>
         <div class="row">
@@ -406,7 +454,8 @@
 </div>
 <div class="foot-wrapper">
     <div class="footer container">
-        <p>&copy;{{(new Date).getFullYear()}} Designed by <a href="https://mohuety.com" target="_blank">Somainer</a>.</p>
+        <!-- <p>&copy;{{(new Date).getFullYear()}} Designed by <a href="https://mohuety.com" target="_blank">Somainer</a>.</p> -->
+        <p>Made with love♡ by <a href="https://roselia.moe/blog/" target="_blank">Somainer</a>.</p>
         <a href="https://github.com/roselia-cdn/roselia-encore">GitHub</a>
     </div>
 </div>
@@ -415,7 +464,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
-<script defer src="static/js/roselia-e.js?v=2"></script>
+<script defer src="static/js/roselia-e.js?v=3"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112692226-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];

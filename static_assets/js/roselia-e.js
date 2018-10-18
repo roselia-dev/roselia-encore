@@ -446,6 +446,13 @@
             roselia.randomLyric = data;
         })
     }
+    roselia.recommandVideos = []
+    roselia.getRecommandVideos = function () {
+        return fetch('static/json/recommandVideos.json').then(j => j.json()).then(data => {
+            roselia.recommandVideos = data.map((v, k) => ({...v, id: k}))
+            roselia.mainVue.$nextTick(roselia.onLoad)
+        })
+    }
     window.roselia = roselia;
 }(window));
 $(function(){
@@ -457,32 +464,28 @@ $(function(){
         }
     });
     roselia.lazyload = roselia.LazyLoad.of({load: false});
-    roselia.mainVue.$nextTick(() => {
+    roselia.mainVue.$nextTick(roselia.onLoad = () => {
         roselia.lazyload.load();
         roselia.utils.openPath(roselia.utils.getPath());
+        let $modal = $('.modal');
+        $modal.on('shown.bs.modal', function (e) {
+            let targ = $(e.target);
+            if(!targ.attr("manual")){
+                let path = e.target.getAttribute("roselia-path");
+                path && roselia.utils.setPath(path);
+            }
+            targ.attr("manual", "");
+            document.title = targ.find('.modal-title').text() || document.title;
+            roselia.lazyload.handler();
+        });
+        $modal.on("hidden.bs.modal", function (e) {
+            let targ = $(e.target);
+            targ.attr("manual") || roselia.utils.setPath([]);
+            targ.attr("manual", "");
+            document.title = TITLE;
     });
-    let $modal = $('.modal');
-    $modal.on('shown.bs.modal', function (e) {
-        let targ = $(e.target);
-        if(!targ.attr("manual")){
-            let path = e.target.getAttribute("roselia-path");
-            path && roselia.utils.setPath(path);
-        }
-        targ.attr("manual", "");
-        document.title = targ.find('.modal-title').text() || document.title;
-        roselia.lazyload.handler();
-    });
-    $modal.on("hidden.bs.modal", function (e) {
-        let targ = $(e.target);
-        targ.attr("manual") || roselia.utils.setPath([]);
-        targ.attr("manual", "");
-        document.title = TITLE;
-    });
-    $(".heimu").mouseover((e) => {
-        $(e.target).css("color", "white");
-    }).mouseout((e) => {
-        $(e.target).css("color", "black");
     });
     addEventListener("popstate", e => roselia.utils.openPath(roselia.utils.getPath()));
     roselia.getLyric()
+    roselia.getRecommandVideos()
 });

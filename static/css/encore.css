@@ -211,7 +211,16 @@ a, a:hover, a:focus, a:visited, a:checked {
     margin-bottom: 15px;
 }
 
-span.heimu {background:black;color:black;}
+span.heimu {
+    background: black;
+    color: black;
+    transition: background 0.37s ease;
+}
+
+span.heimu:hover {
+    color: inherit;
+    background: inherit;
+}
 span.heimu a:link{background:black;color:black !important;}
 span.heimu a:visited{background:black;color:black !important;}
 span.heimu a:hover {background:black;color:black !important;}

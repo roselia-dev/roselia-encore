@@ -1,0 +1,92 @@
+[
+  {
+    "name": "\u81ea\u6211\u4ecb\u7ecd",
+    "isList": true,
+    "data": [
+      {
+        "title": "\u3010BanG Dream!\u3011\u53cb\u5e0c\u90a3\u7684\u81ea\u6211\u4ecb\u7ecd\u266a",
+        "up": "BanGDream\u68a6\u60f3\u534f\u594f\u66f2",
+        "img": "/static/img/recommand/031956831f4d41241b0b4c7b138283c55e353e09.jpg",
+        "aid": "32448660"
+      },
+      {
+        "title": "\u3010BanG Dream!\u3011\u7eb1\u591c\u7684\u81ea\u6211\u4ecb\u7ecd\u266a",
+        "up": "BanGDream\u68a6\u60f3\u534f\u594f\u66f2",
+        "img": "/static/img/recommand/335d1293fc26387e2d6081bf215bcd73a128cc8f.jpg",
+        "aid": "32617183"
+      },
+      {
+        "title": "\u3010BanG Dream!\u3011\u8389\u838e\u7684\u81ea\u6211\u4ecb\u7ecd\u266a",
+        "up": "BanGDream\u68a6\u60f3\u534f\u594f\u66f2",
+        "img": "/static/img/recommand/20632ad2357a5e324e3b915312bc2e6d4b3aafa7.jpg",
+        "aid": "32617192"
+      },
+      {
+        "title": "\u3010BanG Dream!\u3011\u4e9a\u5b50\u7684\u81ea\u6211\u4ecb\u7ecd\u266a",
+        "up": "BanGDream\u68a6\u60f3\u534f\u594f\u66f2",
+        "img": "/static/img/recommand/85241d9f257d73e59531bf617a60cad3c9047d84.jpg",
+        "aid": "32617368"
+      },
+      {
+        "title": "\u3010BanG Dream!\u3011\u71d0\u5b50\u7684\u81ea\u6211\u4ecb\u7ecd\u266a",
+        "up": "BanGDream\u68a6\u60f3\u534f\u594f\u66f2",
+        "img": "/static/img/recommand/avsas_i181009wsru9l9ycjdj3v49mbzu1uwu5_0003.jpg",
+        "aid": "33468401"
+      }
+    ],
+    "ups": [
+      "BanGDream\u68a6\u60f3\u534f\u594f\u66f2"
+    ]
+  },
+  {
+    "name": "Roselia Live",
+    "isList": true,
+    "data": [
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011Roselia 2nd Live \u300cZeit\u300d\u3010LoveDream\u5b57\u5e55\u7ec4 X \u738b\u4e4b\u9a91\u58eb\u56e2\u3011",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/a9b131322aa5b68dd1adb5cc8420e6251ce42464.jpg",
+        "aid": "23458152"
+      },
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011Roselia 1st Live \u300cRosenlied\u300d\u3010LoveDream\u5b57\u5e55\u7ec4 X \u738b\u4e4b\u9a91\u58eb\u56e2\u3011",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/6bad15ebc5f72799e9d04ab22ad8318106cc34b6.jpg",
+        "aid": "23393753"
+      },
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011\u590f\u5929\u7684\u67d0\u573a\u6f14\u5531\u4f1a  \u540e\u53f0\u82b1\u7d6e - Roselia\u90e8\u5206",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/a5b45412004074deeb5f574f4f9c97571745c4ca.jpg",
+        "aid": "21529124"
+      },
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011\u590f\u5929\u7684\u67d0\u573a\u6f14\u5531\u4f1a-Roselia\u90e8\u5206",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/c013ce6acbfe33dc0d33ef2ef6807f8311d3e423.jpg",
+        "aid": "21441735"
+      },
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011Roselia 1st Live Rosenlied\u8ffd\u52a0\u516c\u6f14",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/e38e30d4630c946082c140d4905ac3259710315d.png",
+        "aid": "17224127"
+      },
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011Roselia \u4e8c\u5355 Re birth day \u6b66\u58eb\u9053\u5341\u5468\u5e74Live\u5f71\u50cf",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/0f2623859c2820ae9107e3ed66e76ecee6d12f34.jpg",
+        "aid": "11694750"
+      },
+      {
+        "title": "\u3010\u4e2d\u5b57\u3011Roselia Live\u5f71\u50cf from BanG Dream! 3rd\u2606LIVE",
+        "up": "LoveDream\u5b57\u5e55\u7ec4",
+        "img": "/static/img/recommand/4e684e76463f5e16a8e46736c01f13041a66e890.jpg",
+        "aid": "9939382"
+      }
+    ],
+    "ups": [
+      "LoveDream\u5b57\u5e55\u7ec4"
+    ]
+  }
+]
