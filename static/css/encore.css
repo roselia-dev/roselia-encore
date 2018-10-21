@@ -55,11 +55,43 @@ a, a:hover, a:focus, a:visited, a:checked {
 
 .navbar-header img {
     width: 100%;
+    z-index: 3;
 }
-.banner {
-    background: url("/static/img/banner.jpg") no-repeat;
-    background-size: 100% auto;
-    padding-bottom: 33%;
+.fullscreen-section {
+    height: 108vh;
+}
+.banner .banner-background {
+    background-image: linear-gradient(45deg, rgba(20, 9, 49, 0.7) 0%, rgba(23, 0, 35, 0.68) 16%, rgba(1, 63, 145, 0.6) 78%, rgba(1, 64, 147, 0.57) 79%, rgba(1, 64, 147, 0.19) 93%, rgba(114, 197, 241, 0) 100%), url('/static/img/roselia-top.png');
+    background-size: cover;
+    /* padding-bottom: 33%; */
+    height: 100vh;
+    width: 100%;
+    filter: blur(25px) saturate(120%);
+    animation: blur-clear 1s ease-in-out;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+    position: absolute;
+    z-index: 1;
+}
+.banner .banner-image {
+    height: 100vh;
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    z-index: 2
+}
+.banner .banner-image img {
+    width: 61.8vw;
+    filter: contrast(130%);
+    animation: blur-clear 1s ease-in-out reverse;
+    animation-delay: 2s;
+    animation-fill-mode: backwards;
+}
+@keyframes blur-clear {
+    0% { filter: blur(0px) saturate(100%); }
+    100% { filter: blur(25px) saturate(120%); }
 }
 .haishoku{
     background: rgb(29, 57, 94);

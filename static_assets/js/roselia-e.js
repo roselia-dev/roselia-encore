@@ -66,7 +66,49 @@
         openPath(path){
             if(path.length<3) $(".modal.in").attr('manual', true).modal('hide');
             else $(".modal").filter((_,e)=> (e.getAttribute("roselia-path")||"").toLowerCase() === path.toLowerCase()).attr('manual', true).modal('show');
-        }
+        },
+        colorUtils: {
+            splitRGB (color) {
+              return color.match(/\d+/g)
+            },
+            getYIQ (color) {
+              let rgb = this.splitRGB(color)
+              return ((rgb[0] * 299) + (rgb[1] * 587) + (rgb[2] * 114)) / 1000
+            },
+            getNormalizedTextColor (color, light = '#fff', dark = '#000') {
+              return this.getYIQ(color) >= 128 ? dark : light
+            },
+            apply (option) {
+              let def = {
+                changeText: false,
+                textColors: {
+                  light: '#fff',
+                  dark: '#000'
+                },
+                exclude: ['rgb(0,0,0)'],
+                target: 'body',
+                text: null
+              }
+              let opts = _.extend({}, def, option)
+              let img = document.querySelector(opts.selector)
+              let self = this
+              this.RGBaster.colors(img, {
+                paletteSize: 20,
+                exclude: opts.exclude,
+                success (colors) {
+                  let dominant = self.splitRGB(colors.dominant) ? colors.dominant : colors.palette.find(color => self.splitRGB(color)) || 'rgb(255,255,255)'
+                  $(opts.target).css({transition: 'background-color 1800ms ease'}).css({backgroundColor: dominant})
+                  if (opts.changeText) {
+                    let $text = $(opts.text || opts.target)
+                    $text.css({transition: 'color 1800ms ease'}).css({
+                      color: self.getNormalizedTextColor(dominant,
+                        opts.textColors.light, opts.textColors.dark)
+                    })
+                  }
+                }
+              })
+            }
+          }
     };
     let utils = _;
     roselia.LazyLoad = function($){
@@ -344,6 +386,22 @@
                 title: "P.S.",
                 content: ["BanG-Dream的网站改版了！（终于不用WordPress了）| Yuki真棒.jpg"]
             }]
+        },
+        {
+            id: 7,
+            title: "BRAVE JEWEL",
+            track: ["BRAVE JEWEL", "Sanctuary", "BRAVE JEWEL -instrumental-", "Sanctuary -instrumental-"],
+            releaseDate: "2018/12/12",
+            links: [
+                {
+                    origin: "BanG Dream",
+                    link: "https://bang-dream.com/discographies/633"
+                }
+            ],
+            extension: [{
+                title: "P.S.",
+                content: ["这首单曲还是19年的第二季的OP，啊真香", "但是官网说隔壁PP'P的12单也是OP，总不会是打字错误吧（划去）"]
+            }]
         }
     ];
     roselia.album = [
@@ -463,11 +521,11 @@ $(function(){
             roselia
         }
     });
-    roselia.lazyload = roselia.LazyLoad.of({load: false});
+    roselia.lazyload = roselia.LazyLoad.of({load: false, selector: 'img:not(.lazyload-exclude)'});
     roselia.mainVue.$nextTick(roselia.onLoad = () => {
         roselia.lazyload.load();
         roselia.utils.openPath(roselia.utils.getPath());
-        let $modal = $('.modal');
+        let $modal = $('.modal:not(.roselia-initialized)');
         $modal.on('shown.bs.modal', function (e) {
             let targ = $(e.target);
             if(!targ.attr("manual")){
@@ -483,7 +541,8 @@ $(function(){
             targ.attr("manual") || roselia.utils.setPath([]);
             targ.attr("manual", "");
             document.title = TITLE;
-    });
+        });
+        $modal.addClass('roselia-initialized')
     });
     addEventListener("popstate", e => roselia.utils.openPath(roselia.utils.getPath()));
     roselia.getLyric()

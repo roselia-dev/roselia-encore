@@ -51,10 +51,16 @@
     </div>
     
 </nav>
-<div class="banner hidden-xs">
+<div class="hidden-xs banner fullscreen-section">
+    <div class="banner-background">
+    </div>
+    <div class="banner-image">
+        <img src="static/img/roselia characters.png" class="lazyload-exclude">
+    </div>
 </div>
+
 <div class="mobile-header visible-xs">
-    <div class="m-logo"><img src="static/img/logo.png"></div>
+    <div class="m-logo"><img class="lazyload-exclude" src="static/img/logo.png"></div>
 </div>
 <div class="main container">
     <div class="member part">
@@ -152,18 +158,26 @@
         <div class="animate part">
             <h2>BanG Dream {{ roselia.langOf("番剧", "アニメ", "Anime") }}</h2>
             <div class="row">
-                <div class="col-xs-6 col-md-6">
+                <div class="col-xs-6 col-md-3">
                     <a href="https://bangumi.bilibili.com/anime/5807" class="thumbnail" target="_blank">
                         <div class="caption">
-                            <p>BanG Dream TV </p>
+                            <p>BanG Dream! TV </p>
                             <del>话说每集的题目真是不得了啊</del>
                         </div>
                     </a>
                 </div>
-                <div class="col-xs-6 col-md-6">
+                <div class="col-xs-6 col-md-3">
                     <a href="https://bangumi.bilibili.com/anime/6398" class="thumbnail" target="_blank">
                         <div class="caption">
-                            BanG Dream OVA
+                            BanG Dream! OVA
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <a href="https://www.bilibili.com/bangumi/media/md135252/" class="thumbnail" target="_blank">
+                        <div class="caption">
+                            BanG Dream! 少女乐团派对☆PICO
+                            <p><span class="heimu">我最爱的沙雕小动画！</span></p>
                         </div>
                     </a>
                 </div>
@@ -464,7 +478,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
-<script defer src="static/js/roselia-e.js?v=3"></script>
+<script defer src="static/js/roselia-e.js?v=4"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112692226-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
