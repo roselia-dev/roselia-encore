@@ -1,6 +1,15 @@
 # roselia-encore
 其实这个不仅是个应援站，这同时是个模板，通过更改`roselia-e.js`就能够对内容进行修改（某Java: 一处编译，处处Dubug）。
 
+## 新坑
+使用react重写了`roselia-encore`，将模板彻底通用化（希望）
+
+地址： [roselia-encore-react](https://github.com/Somainer/roselia-encore-react)
+
+新版应援站的地址在： [Roselia Encore](https://encore.roselia.xyz/)，现在在开发和测试阶段，成熟后迁移（或者废弃）
+
+希望赏一个star
+
 ## 关于自带的模板
 `roselia.utils.renderObject(template, context, delim)`: 将根据`context`递归地渲染template中的String, Array， 否则原样返回。这个函数不会修改template中的内容，将会返回渲染好的一个副本。但是好像Vue的模板足够强大，目前没有用到，但是我还是写了进去。
 
