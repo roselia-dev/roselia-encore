@@ -27,6 +27,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="https://tieba.baidu.com/f?kw=bangdream" target="_blank">BangDream吧</a></li>
             <li><a href="https://tieba.baidu.com/f?kw=roselia" target="_blank">Roselia吧</a></li>
+            <li><a href="https://encore.roselia.xyz/" target="_blank">Roselia Encore β</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{ roselia.langOf("语言", "言語", "Language")}}<span
                         class="caret"></span></a>
@@ -37,7 +38,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">角色贴吧（如果存在的话） <span
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">角色贴吧<span
                         class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li v-for="member in roselia.memberList">
@@ -442,8 +443,18 @@
             <h2>更多……</h2>
             <p>各位若有什么想法，欢迎来批判一番。</p>
             <p><span class="heimu">啊，美工缺炸了，救命（一个人要弃疗了</span></p>
-            <div class="col-xs-6 col-md-3 col-lg-2">
-                <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" href="mailto:me@roselia.moe">现在就批判一番</a>
+            <div class="row">
+                <div class="col-xs-6 col-md-3 col-lg-2">
+                    <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" href="mailto:me@roselia.moe">现在就批判一番</a>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <h2>Roselia Encore Beta: beta version of Roselia Encore</h2>
+                    <p>使用React写的船新版本，更多新功能</p>
+                    <p><span class="heimu">开新坑真开心</span></p>
+                    <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" target="_blank" href="https://encore.roselia.xyz/">Roselia Encore β</a>
+                </div>
             </div>
             <div class="col-xs-6 col-md-3 col-lg-2">
                 <a class="EdgeButton EdgeButton--medium EdgeButton--roselia" target="_blank" href="https://github.com/roselia-cdn/roselia-encore">View on GitHub</a>
@@ -478,7 +489,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
-<script defer src="static/js/roselia-e.js?v=4"></script>
+<script defer src="static/js/roselia-e.js?v=5"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112692226-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
