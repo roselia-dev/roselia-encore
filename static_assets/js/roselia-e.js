@@ -402,6 +402,32 @@
                 title: "P.S.",
                 content: ["这首单曲还是19年的第二季的OP，啊真香", "但是官网说隔壁PP'P的12单也是OP，总不会是打字错误吧（划去）"]
             }]
+        },
+        {
+            id: 8,
+            title: "Safe and Sound",
+            track: ["Safe and Sound", "PASSIONATE ANTHEM", "Safe and Sound -instrumental-", "PASSIONATE ANTHEM -instrumental-"],
+            releaseDate: "2019/2/20",
+            links: [
+                {
+                    origin: "BanG Dream",
+                    link: "https://bang-dream.com/discographies/739"
+                }
+            ],
+            extension: [
+                {
+                    title: "快住手！",
+                    content: [
+                        "2月20号7CD10BD，我的钱包要空了。",
+                        "My wallet is not safe and sound."
+                    ]
+                },
+                {
+                    title: '封面',
+                    content: '目前暂时将游戏假封面作为专辑封面',
+                    hidden: false
+                }
+            ]
         }
     ];
     roselia.album = [
