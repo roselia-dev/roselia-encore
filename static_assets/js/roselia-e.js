@@ -428,6 +428,87 @@
                     hidden: false
                 }
             ]
+        },
+        {
+            id: 9,
+            title: 'FIRE BIRD',
+            track: ['FIRE BIRD', 'Ringing Bloom', 'FIRE BIRD -instrumental-', 'Ringing Bloom -instrumental-'],
+            releaseDate: '2019/07/24',
+            links: [
+                {
+                    origin: 'BanG Dream',
+                    link: 'https://bang-dream.com/discographies/963'
+                },
+                {
+                    origin: '萌娘百科（FIRE BIRD）',
+                    link: 'https://zh.moegirl.org/FIRE_BIRD'
+                },
+                {
+                    origin: '萌娘百科（Ringing Bloom）',
+                    link: 'https://zh.moegirl.org/zh-cn/Ringing_Bloom'
+                }
+            ],
+            extension: [
+                {
+                    title: 'Blu-ray',
+                    content: [
+                        'アニメ「BanG Dream! 2nd Season」#5~#6',
+                        'Web用次回予告#5~#6',
+                        'アニメ「BanG Dream! 2nd Season」CM Roselia編'
+                    ],
+                    hidden: false
+                },
+                {
+                    title: '',
+                    hidden: true,
+                    content: 'Rinrin Bloom'
+                },
+                {
+                    title: 'GBP 相关（Ringring Bloom）',
+                    content: [
+                        '因为是在游戏中出现的原创歌曲，我暂且认为是9单的歌曲（PA：明明是我先来的，怎么就成CW曲了？）（还真是CW曲草（日本語意味））',
+                        '这首歌根本就不能在手机上玩',
+                        '本人比较菜，只能在pad上clear（FC有生之年吧）',
+                        '物量冠军，相比之下GK是儿歌',
+                        '六兆年比这个简单一点（认真脸）'
+                    ]
+                },
+                {
+                    title: '1094 Note',
+                    content: ['是 Ringing Bloom 的 Note 数', '让我们记住这个鬼畜的EX物量', 'C/W曲尚且如此，听着感觉FIRE BIRD难度也不会低'],
+                    hidden: false
+                },
+                {
+                    title: '935 Note',
+                    content: [
+                        '是 Fire Bird 的 Note 数',
+                        '还行（毕竟我都能FC）'
+                    ],
+                    hidden: false
+                }
+            ]
+        },
+        {
+            id: 10,
+            title: '約束',
+            track: ['約束', '“UNIONS” Road', '約束 -instrumental-', '“UNIONS” Road -instrumental-'],
+            releaseDate: '2020/01/15',
+            extension: [
+                {
+                    title: '',
+                    content: 'Determination Symphony (Lisa Version)'
+                }
+            ],
+            links: [
+                {
+                    origin: 'BanG Dream!',
+                    link: 'https://bang-dream.com/discographies/1388'
+                },
+                {
+                    origin: '谱面',
+                    link: 'https://bangdream.ga/music/jp/200'
+                }
+            ]
         }
     ];
     roselia.album = [
